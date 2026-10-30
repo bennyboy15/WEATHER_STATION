@@ -15,5 +15,6 @@ class Station(Base):
     longitude: Mapped[float] = mapped_column()
 
     readings: Mapped[list["Reading"]] = relationship(
-        back_populates="station"
+        back_populates="station",
+        cascade="all, delete-orphan"
     )

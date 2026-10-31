@@ -28,5 +28,3 @@ class Reading(Base):
     temperature: Mapped[float] = mapped_column()
     humidity: Mapped[float] = mapped_column()
     pressure: Mapped[float] = mapped_column()
-    rainfall: Mapped[float] = mapped_column()
-    wind_speed: Mapped[float] = mapped_column()

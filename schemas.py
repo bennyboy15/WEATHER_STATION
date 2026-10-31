@@ -47,8 +47,6 @@ class ReadingResponse(BaseModel):
     temperature: float
     humidity: float
     pressure: float
-    rainfall: float
-    wind_speed: float
 
     @field_validator("recorded_at")
     @classmethod
@@ -60,8 +58,6 @@ class CreateReading(BaseModel):
     temperature: float = Field(ge=-100, le=100, description="°C")
     humidity: float = Field(ge=0, le=100, description="Relative humidity, %")
     pressure: float = Field(ge=300, le=1100, description="hPa")
-    rainfall: float = Field(ge=0, description="mm since the previous reading")
-    wind_speed: float = Field(ge=0, description="m/s")
 
     @field_validator("recorded_at")
     @classmethod

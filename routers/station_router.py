@@ -13,7 +13,7 @@ def get_stations(db: Session = Depends(get_db)):
     return db.scalars(select(Station).order_by(Station.id)).all()
 
 @router.get("/{station_id}", response_model=StationResponse)
-def get_stations(station_id:int, db: Session = Depends(get_db)):
+def get_station(station_id:int, db: Session = Depends(get_db)):
     existing_station = db.get(Station, station_id)
 
     if existing_station is None:

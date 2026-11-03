@@ -12,6 +12,15 @@ router = APIRouter(prefix="/stations", tags=["stations"])
 def get_stations(db: Session = Depends(get_db)):
     return db.scalars(select(Station).order_by(Station.id)).all()
 
+@router.get("/{station_id}", response_model=StationResponse)
+def get_stations(station_id:int, db: Session = Depends(get_db)):
+    existing_station = db.get(Station, station_id)
+
+    if existing_station is None:
+        raise HTTPException(404, "Station not found")
+
+    return existing_station
+
 @router.post("", response_model=StationResponse, status_code=201, dependencies=[Depends(require_api_key)])
 def create_station(station: CreateStation, db: Session = Depends(get_db)):
     new_station = Station(**station.model_dump())
